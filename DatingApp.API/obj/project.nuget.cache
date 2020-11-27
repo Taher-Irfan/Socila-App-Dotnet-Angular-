@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "IwWAwJyZ8p0OXHNJMJD7SWt+JB2CF1LZufTnu531n7V0Xox/axpODMplay/pzqBJMHjXEigVd9JbP0yMP7MSvg==",
+  "dgSpecHash": "4dCvGnboG4WGtp9bjET25fydIL7Lq0qWN5/mFXMlYsDXFusYJ3wbGKXHHnOLGTca6dG32/22APLgn1iO2b0VAQ==",
   "success": true,
   "projectFilePath": "D:\\Angular+dotnet(Udemy)\\DatingApp.API\\DatingApp.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\cloudinarydotnet\\1.8.0\\cloudinarydotnet.1.8.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\dotnetopenauth.core\\4.3.4.13329\\dotnetopenauth.core.4.3.4.13329.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\dotnetopenauth.core.ui\\4.3.4.13329\\dotnetopenauth.core.ui.4.3.4.13329.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\dotnetopenauth.infocard\\4.3.4.13329\\dotnetopenauth.infocard.4.3.4.13329.nupkg.sha512",
