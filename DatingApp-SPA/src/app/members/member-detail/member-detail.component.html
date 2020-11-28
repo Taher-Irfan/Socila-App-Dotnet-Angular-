@@ -6,7 +6,7 @@
     <div class="col-4">
       <div class="card">
         <img 
-          src="{{user.photoUrl }}" 
+          src="{{user.photoUrl ||'../../../../../assets/user.png'}} " 
           alt="{{user.knownAs}}" 
           class="card-img-top img-thumbnail">
         <div class="card-body">
@@ -21,7 +21,7 @@
           <div>
             
               <strong>Last Active:</strong>
-              <p>{{user.lastActive }}</p>
+              <p>{{user.lastActive}}</p>
           </div>  
           <div>
               <strong>Member since:</strong>
