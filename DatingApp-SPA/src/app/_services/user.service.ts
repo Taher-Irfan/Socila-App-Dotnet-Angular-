@@ -1,7 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { PaginatedResult } from '../_models/pagination';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -12,8 +14,46 @@ export class UserService {
   // jwtHelper = new JwtHelperService();
   // decodedToken: any;
   constructor(private http: HttpClient) {}
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseurl + 'users');
+  getUsers(
+    page?,
+    itemsPerPage?,
+    userParams?,
+    likesParams?
+  ): Observable<PaginatedResult<User[]>> {
+    const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<
+      User[]
+    >();
+    let params = new HttpParams();
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+    if (userParams != null) {
+      params = params.append('minAge', userParams.minAge);
+      params = params.append('maxAge', userParams.maxAge);
+      params = params.append('gender', userParams.gender);
+      params = params.append('orderBy', userParams.orderBy);
+    }
+    if (likesParams === 'Likers') {
+      params = params.append('likers', 'true');
+    }
+    if (likesParams === 'Likees') {
+      params = params.append('likees', 'true');
+    }
+
+    return this.http
+      .get<User[]>(this.baseurl + 'users', { observe: 'response', params })
+      .pipe(
+        map((response) => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(
+              response.headers.get('Pagination')
+            );
+          }
+          return paginatedResult;
+        })
+      );
   }
   getUser(id): Observable<User> {
     return this.http.get<User>(this.baseurl + 'users/' + id);
@@ -27,10 +67,13 @@ export class UserService {
       {}
     );
   }
-  deletePhoto(userId: number, id:number)
-  {
-    return this.http.delete(
-      this.baseurl + 'users/' + userId + '/photos/' + id );
-
+  deletePhoto(userId: number, id: number) {
+    return this.http.delete(this.baseurl + 'users/' + userId + '/photos/' + id);
+  }
+  sendLike(id: number, recipientId: number) {
+    return this.http.post(
+      this.baseurl + 'users/' + id + '/like/' + recipientId,
+      {}
+    );
   }
 }

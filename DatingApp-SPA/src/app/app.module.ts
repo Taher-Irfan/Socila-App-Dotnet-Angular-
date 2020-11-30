@@ -29,7 +29,9 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule} from 'ngx-bootstrap/buttons';
+import { ListsResolver } from './_resolvers/lists.resolver';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -55,8 +57,10 @@ export function tokenGetter() {
     FileUploadModule,
     ReactiveFormsModule,
     HttpClientModule,
+    PaginationModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TabsModule.forRoot(),
+    ButtonsModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
@@ -77,6 +81,7 @@ export function tokenGetter() {
     UserService,
     PreventUnsavedChanges,
     MemberEditResolver,
+    ListsResolver,
     ErrorInterceptorProvider,
 
   ],
