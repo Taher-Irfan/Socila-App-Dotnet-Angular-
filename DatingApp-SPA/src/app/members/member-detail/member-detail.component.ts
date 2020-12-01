@@ -13,6 +13,7 @@ import { UserService } from 'src/app/_services/user.service';
 import {Pipe, PipeTransform} from '@angular/core';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/tabset.component';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -26,7 +27,7 @@ export class MemberDetailComponent implements OnInit {
   @ViewChild('memberTabs', { static: false }) memberTabs: TabsetComponent;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,private authService: AuthService, private userService: UserService, private alertify: AlertifyService
   ) { }
 
   ngOnInit() {
@@ -65,5 +66,17 @@ export class MemberDetailComponent implements OnInit {
 
   selectTab(tabId: number) {
     this.memberTabs.tabs[tabId].active = true;
+  }
+  sendLike(id: number)
+  {
+    this.userService.sendLike(this.authService.decodedToken.nameid, id).subscribe(
+      data =>{
+        this.alertify.success('You have liked:'+ this.user.knownAs);
+      },
+      error =>
+      {
+        this.alertify.error(error);
+      }
+    );
   }
 }
