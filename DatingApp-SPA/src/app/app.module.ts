@@ -32,6 +32,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule} from 'ngx-bootstrap/buttons';
 import { ListsResolver } from './_resolvers/lists.resolver';
+import { MessagesResolver } from './_resolvers/messages.resolver';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -46,6 +48,7 @@ export function tokenGetter() {
     RegisterComponent,
     MemberListComponent,
     ListsComponent,
+    MemberMessagesComponent,
     MessagesComponent,
     MemberCardComponent,
     MemberDetailComponent,
@@ -82,6 +85,7 @@ export function tokenGetter() {
     PreventUnsavedChanges,
     MemberEditResolver,
     ListsResolver,
+    MessagesResolver,
     ErrorInterceptorProvider,
 
   ],
